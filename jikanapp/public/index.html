@@ -16,6 +16,64 @@
     <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
     <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"> -->
+      <!--- Site CSS -->
+  <link rel="stylesheet" type="text/css" href="../../dist/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="../../dist/components/site.css">
+  <link rel="stylesheet" type="text/css" href="../../dist/components/grid.css">
+
+  <!--- Component CSS -->
+  <link rel="stylesheet" type="text/css" href="../../dist/components/menu.css">
+  <link rel="stylesheet" type="text/css" href="../../dist/components/input.css">
+  <link rel="stylesheet" type="text/css" href="../../dist/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="../../dist/components/icon.css">
+  <link rel="stylesheet" type="text/css" href="../../dist/components/button.css">
+  <link rel="stylesheet" type="text/css" href="../../dist/components/transition.css">
+
+  <!--- Example Libs -->
+  <link rel="stylesheet" type="text/css" href="../../dist/components/popup.css">
+  <script src="../assets/library/jquery.min.js"></script>
+  <script src="../assets/library/iframe-content.js"></script>
+  <script src="../assets/show-examples.js"></script>
+  <script type="text/javascript" src="../../dist/components/popup.js"></script>
+
+  <!--- Component JS -->
+  <script type="text/javascript" src="../../dist/components/transition.js"></script>
+  <script type="text/javascript" src="../../dist/components/dropdown.js"></script>
+
+  <!--- Example CSS -->
+  <style>
+  body {
+    padding: 1em;
+  }
+  .ui.menu {
+    margin: 3em 0em;
+  }
+  .ui.menu:last-child {
+    margin-bottom: 110px;
+  }
+  </style>
+
+  <!--- Example Javascript -->
+  <script>
+  $(document)
+    .ready(function() {
+      $('.ui.menu .ui.dropdown').dropdown({
+        on: 'hover'
+      });
+      $('.ui.menu a.item')
+        .on('click', function() {
+          $(this)
+            .addClass('active')
+            .siblings()
+            .removeClass('active')
+          ;
+        })
+      ;
+    })
+  ;
+  </script>
+
+    
     <title>Jikan</title>
   </head>
   <body>
