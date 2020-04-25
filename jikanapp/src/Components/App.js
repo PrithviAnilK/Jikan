@@ -1,9 +1,15 @@
 import React from 'react'
+import Timer from './Timer'
+import Menu from './Menu'
+
 
 class App extends React.Component {
     render() {
         return (
-            <div>Yeye</div>
+            <div>
+                <Menu />
+                <div><Timer /></div>
+            </div>
         )
     }
 }
