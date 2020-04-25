@@ -1,35 +1,79 @@
 import React from 'react'
 import '../Styles/Timer.css';
 
+const getTime = (time) => {
+    const minutes = time.minutes;
+    const seconds = time.seconds;
+    if(minutes == 0 && seconds == 0) 
+    {
+        alert("Session Done!");
+        return ({
+            minutes: 25,
+            seconds: 0
+        })
+    }
+    if(seconds == 0) 
+    {
+        return ({
+            minutes: minutes - 1,
+            seconds: 59
+        })
+    }
+    else 
+    {
+        return ({
+            minutes: minutes,
+            seconds: seconds - 1
+        })
+    }
+}
+
 
 class Timer extends React.Component {
     state = {
         isOn : false,
         time: {
-            minutes: 0,
+            minutes: 25,
             seconds: "00"
+        },
+        timer: setInterval(this.tick, 1000)
+    }
+
+    tick = () => {
+        if(this.state.isOn)
+        {
+            this.setState({
+                time: getTime(this.state.time) 
+            })
+        }
+        else 
+        {
+            clearInterval(this);
         }
     }
 
     startButton = () => {
+        if(this.state.isOn) return ;
         this.setState({
-            time: {
-                minutes: 25,
-                seconds: "00"
-            }
-        })
+            isOn: true,
+        });
+        this.setState({timer: setInterval(this.tick, 1000)});
     }
     
     stopButton = () => {
+        this.setState({isOn: false});
+        clearInterval(this.state.timer);
     }
     
     resetButton = () => {
         this.setState({
             time: {
-                minutes: 0,
+                minutes: 25,
                 seconds: "00"
-            }
+            },
+            isOn: false
         })
+        clearInterval(this.state.timer);
     }
 
     render() {
