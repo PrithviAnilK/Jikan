@@ -24,7 +24,7 @@ class Timer extends React.Component {
         const seconds = time.seconds;
         if(minutes == 0 && seconds == 0) 
         {
-            alert("Session Done!");
+            alert("Pomodoro Done!");
             this.setState({
                 isOn: false
             });
@@ -87,11 +87,26 @@ class Timer extends React.Component {
         clearInterval(this.state.timer);
     }
 
+    getHeading = () => {
+        if(this.state.isOn) return "Pomodoro in progress...";
+        else if(this.state.time.minutes == 25) return "Start Pomodoro!";
+        else return "Continue Pomodoro...";
+    }
+
     render() {
         return (
             <div className = "body">
                 <div className = "ui raised very padded text container segment">
-                    <h2 className = "ui header">{this.state.time.minutes + ":" + this.state.time.seconds}</h2>
+                <div className = "headerDiv">
+                    <h1 className = "ui header" id = "heading">{this.getHeading()}</h1>
+                </div>
+                <h4 className = "ui horizontal divider header">
+                    <span role = "img" aria-label = "tomato">🍅</span>
+                </h4>
+                    <h1 className = "ui header" id = "time">{this.state.time.minutes + ":" + this.state.time.seconds}</h1>
+                <h4 className = "ui horizontal divider header">
+                    <span role = "img" aria-label = "tomato">🍅</span>
+                </h4>
                     <div className ="three ui buttons">
                         <button className = "ui button green" onClick = {this.startButton}>Start</button>
                         <button className = "ui button red" onClick = {this.stopButton}>Stop</button>

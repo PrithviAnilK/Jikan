@@ -1,3 +1,15 @@
 .container {
     text-align: center;
 }
+
+.headerDiv {
+    padding: 10px 0;
+}
+
+#time {
+    font-size: 100px;
+}
+
+#heading {
+    font-size: 50px;
+}
