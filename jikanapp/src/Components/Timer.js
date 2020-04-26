@@ -2,11 +2,7 @@
 import React from 'react'
 import '../Styles/Timer.css';
 
-
-// init
-const beginMinutes = 25,
-      beginSeconds = "00";
-
+// helper
 const getColor = (isOn) => {
     return isOn ? "red":"green";
 }
@@ -21,8 +17,8 @@ class Timer extends React.Component {
     state = {
         isOn : false,
         time: {
-            minutes: beginMinutes,
-            seconds: beginSeconds
+            minutes: this.props.beginingTime.beginMinutes,
+            seconds: this.props.beginingTime.beginSeconds
         },
         timer: setInterval(this.tick, 1000)
     }
@@ -37,8 +33,8 @@ class Timer extends React.Component {
                 isOn: false
             });
             return ({
-                minutes: beginMinutes,
-                seconds: beginSeconds
+                minutes: this.props.beginingTime.beginMinutes,
+                seconds: this.props.beginingTime.beginSeconds
             })
         }
         if(seconds == 0) 
@@ -89,8 +85,8 @@ class Timer extends React.Component {
     resetButton = () => {
         this.setState({
             time: {
-                minutes: beginMinutes,
-                seconds: beginSeconds
+                minutes: this.props.beginingTime.beginMinutes,
+                seconds: this.props.beginingTime.beginSeconds
             },
             isOn: false
         })
@@ -99,7 +95,7 @@ class Timer extends React.Component {
 
     getHeading = () => {
         if(this.state.isOn) return "Pomodoro in progress...";
-        else if(this.state.time.minutes == 25) return "Start Pomodoro!";
+        else if(this.state.time.minutes === this.props.beginingTime.beginMinutes && this.state.time.seconds === this.props.beginingTime.beginSeconds) return "Start Pomodoro!";
         else return "Continue Pomodoro...";
     }
 
