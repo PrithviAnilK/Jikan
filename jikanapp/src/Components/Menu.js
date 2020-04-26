@@ -12,8 +12,11 @@ class Menu extends React.Component {
                         </span>
                         <i className = "dropdown icon"></i>
                         <div className = "menu">
+                            <a className = "item" href = "/">What is the Pomodoro Technique?</a>
+                            <div className = "divider"></div>
                             <a className = "item" href = "/">Stats</a>
                             <a className = "item" href = "/">Settings</a>
+                            <div className = "divider"></div>
                             <a className = "item" href = "https://github.com/PrithviAnilK/Jikan">Github</a>
                         </div>
                     </div>

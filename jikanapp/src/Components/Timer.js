@@ -7,6 +7,14 @@ import '../Styles/Timer.css';
 const beginMinutes = 25,
       beginSeconds = "00";
 
+const getColor = (isOn) => {
+    return isOn ? "red":"green";
+}
+
+const getText = (isOn) => {
+    return isOn ? "Stop":"Start";
+}
+
 
 // Timer Component
 class Timer extends React.Component {
@@ -64,16 +72,18 @@ class Timer extends React.Component {
     }
 
     startButton = () => {
-        if(this.state.isOn) return ;
-        this.setState({
-            isOn: true,
-        });
-        this.setState({timer: setInterval(this.tick, 1000)});
-    }
-    
-    stopButton = () => {
-        this.setState({isOn: false});
-        clearInterval(this.state.timer);
+        if(this.state.isOn) 
+        {
+            this.setState({isOn: false});
+            clearInterval(this.state.timer);
+        }
+        else 
+        {
+            this.setState({
+                isOn: true,
+            });
+            this.setState({timer: setInterval(this.tick, 1000)});
+        }
     }
     
     resetButton = () => {
@@ -108,8 +118,7 @@ class Timer extends React.Component {
                     <span role = "img" aria-label = "tomato">🍅</span>
                 </h4>
                     <div className ="three ui buttons">
-                        <button className = "ui button green" onClick = {this.startButton}>Start</button>
-                        <button className = "ui button red" onClick = {this.stopButton}>Stop</button>
+                        <button className = {`ui button ${getColor(this.state.isOn)}`} onClick = {this.startButton}>{getText(this.state.isOn)}</button>
                         <button className = "ui button black" onClick = {this.resetButton}>Reset</button>
                     </div>
                 </div>
