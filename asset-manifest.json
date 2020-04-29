@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Jikan/static/css/main.2692c75a.chunk.css",
+    "main.js": "/Jikan/static/js/main.f2db3429.chunk.js",
+    "main.js.map": "/Jikan/static/js/main.f2db3429.chunk.js.map",
+    "runtime-main.js": "/Jikan/static/js/runtime-main.fffdb5a1.js",
+    "runtime-main.js.map": "/Jikan/static/js/runtime-main.fffdb5a1.js.map",
+    "static/js/2.c2414700.chunk.js": "/Jikan/static/js/2.c2414700.chunk.js",
+    "static/js/2.c2414700.chunk.js.map": "/Jikan/static/js/2.c2414700.chunk.js.map",
+    "index.html": "/Jikan/index.html",
+    "precache-manifest.e81cffd714ec951c91d4b68f50b50295.js": "/Jikan/precache-manifest.e81cffd714ec951c91d4b68f50b50295.js",
+    "service-worker.js": "/Jikan/service-worker.js",
+    "static/css/main.2692c75a.chunk.css.map": "/Jikan/static/css/main.2692c75a.chunk.css.map",
+    "static/js/2.c2414700.chunk.js.LICENSE.txt": "/Jikan/static/js/2.c2414700.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fffdb5a1.js",
+    "static/js/2.c2414700.chunk.js",
+    "static/css/main.2692c75a.chunk.css",
+    "static/js/main.f2db3429.chunk.js"
+  ]
+}
