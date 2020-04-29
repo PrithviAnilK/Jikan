@@ -55,14 +55,12 @@ class Timer extends React.Component {
         const seconds = time.seconds;
         if (minutes == 0 && seconds == 0) {
             alert("Pomodoro Done!");
+            clearInterval(this.state.timer);
             this.setState({
                 isOn: false,
                 count: (this.state.type === "Pomodoro" ?  this.state.count + 1 : this.state.count) 
             });
-            return ({
-                minutes: this.state.time.minutes,
-                seconds: this.state.time.seconds
-            })
+            return (this.getBeginTime(this.state.type));
         }
         if (seconds == 0) {
             return ({
