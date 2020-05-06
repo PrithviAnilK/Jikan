@@ -1,19 +1,22 @@
 import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 import Timer from './Timer'
 import Menu from './Menu'
 import '../Styles/App.css'
 
-class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <Menu />
+
+const App = () => {
+    return(
+        <div>
+            <Router>
                 <div>
-                    <Timer />
+                    <Menu />
+                    <Route path="/" exact component={Timer} />
                 </div>
-            </div>
-        )
-    }
+            </Router>
+        </div>
+    )
 }
 
 export default App;

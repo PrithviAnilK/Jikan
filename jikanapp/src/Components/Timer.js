@@ -1,6 +1,8 @@
 // Imports
 import React from 'react'
 import '../Styles/Timer.css';
+import { connect } from 'react-redux'
+
 
 // Helper Functions
 const getColor = (isOn) => {
@@ -30,21 +32,21 @@ class Timer extends React.Component {
     getBeginTime = (type) => {
         if (type === 'Pomodoro') {
             return {
-                minutes: 25,
-                seconds: "00"
+                minutes: this.props.beginningTime.pomodoro.minutes,
+                seconds: this.props.beginningTime.pomodoro.seconds
             }
         }
         else if (type === 'Short Break') {
             return {
-                minutes: 5,
-                seconds: "00"
+                minutes: this.props.beginningTime.shortbreak.minutes,
+                seconds: this.props.beginningTime.shortbreak.seconds
             }
 
         }
         else {
             return {
-                minutes: 15,
-                seconds: "00"
+                minutes: this.props.beginningTime.longbreak.minutes,
+                seconds: this.props.beginningTime.longbreak.seconds
             }
 
         }
@@ -114,9 +116,9 @@ class Timer extends React.Component {
 
             return <div>{this.state.type} in progress...</div>;
         }
-        else if (this.state.time.minutes === 25) return <div>Start {this.state.type}</div>;
-        else if (this.state.time.minutes === 5) return <div>Start {this.state.type}</div>;
-        else if (this.state.time.minutes === 15) return <div>Start {this.state.type}</div>;
+        else if (this.state.time.minutes === this.props.beginningTime.pomodoro.minutes) return <div>Start {this.state.type}</div>;
+        else if (this.state.time.minutes === this.props.beginningTime.shortbreak.minutes) return <div>Start {this.state.type}</div>;
+        else if (this.state.time.minutes === this.props.beginningTime.longbreak.minutes) return <div>Start {this.state.type}</div>;
         else return <div>Continue {this.state.type}</div>;
     }
 
@@ -124,30 +126,21 @@ class Timer extends React.Component {
         if (timer === 1) {
             this.resetButton();
             this.setState({
-                time: {
-                    minutes: 25,
-                    seconds: "00"
-                },
+                time: this.getBeginTime("Pomodoro"),
                 type: "Pomodoro"
             })
         }
         else if (timer === 2) {
             this.resetButton();
             this.setState({
-                time: {
-                    minutes: 5,
-                    seconds: "00"
-                },
+                time: this.getBeginTime("Short Break"),
                 type: "Short Break"
             })
         }
         else {
             this.resetButton();
             this.setState({
-                time: {
-                    minutes: 15,
-                    seconds: "00"
-                },
+                time: this.getBeginTime("Long Break"),
                 type: "Long Break"
             })
         }
@@ -156,6 +149,7 @@ class Timer extends React.Component {
 
     // Component Functions
     render() {
+        // console.log(this.props);
         return (
             <div className="body">
                 <div className="ui raised very padded text container segment">
@@ -190,4 +184,13 @@ class Timer extends React.Component {
     }
 }
 
-export default Timer;
+const mapStateToProps = (state) => {
+    // console.log(state);
+    return {
+        beginningTime : state.beginningTime
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(Timer)
