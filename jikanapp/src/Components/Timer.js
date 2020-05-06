@@ -149,7 +149,6 @@ class Timer extends React.Component {
 
     // Component Functions
     render() {
-        // console.log(this.props);
         return (
             <div className="body">
                 <div className="ui raised very padded text container segment">
