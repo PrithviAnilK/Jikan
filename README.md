@@ -1,11 +1,11 @@
 # Jikan
-## Jikan is a Pomodoro Timer made in React.js
+## Jikan is a Pomodoro Timer made in React.js and Redux
 
 The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for 'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student - <a href = "https://en.wikipedia.org/wiki/Pomodoro_Technique">Wikipedia</a>
 
 I use the pomodoro technique everyday of my life to stay more productive and I think it has worked wonders for me. So when I learnt React JS, I decided to make a small Pomodoro Timer web app.
 
-## How to use the Pomodoro Technique in Jikan
+## How to use the Pomodoro Technique in Jikan?
   - Decide on the task to be done.
   - Set the pomodoro timer to Pomodoro mode (25 Minutes)
   - Work on the task.
