@@ -2,6 +2,8 @@
 import React from 'react'
 import '../Styles/Timer.css';
 import { connect } from 'react-redux'
+import { changeCount } from '../actions'
+
 
 
 // Helper Functions
@@ -20,11 +22,11 @@ class Timer extends React.Component {
     state = {
         isOn: false,
         time: {
-            minutes: 25,
-            seconds: "00"
+            minutes: this.props.beginningTime.pomodoro.minutes,
+            seconds: this.props.beginningTime.pomodoro.seconds
         },
         timer: setInterval(this.tick, 1000),
-        count: 0,
+        count: this.props.beginningTime.count,
         type: 'Pomodoro'
     }
 
@@ -62,6 +64,8 @@ class Timer extends React.Component {
                 isOn: false,
                 count: (this.state.type === "Pomodoro" ?  this.state.count + 1 : this.state.count) 
             });
+            // console.log(this.props.beginningTime.count);
+            // console.log(this.state.count);
             return (this.getBeginTime(this.state.type));
         }
         if (seconds == 0) {
@@ -84,6 +88,7 @@ class Timer extends React.Component {
             this.setState({
                 time: this.getTime(this.state.time)
             })
+            if(this.state.count != this.props.beginningTime.count) this.props.changeCount(this.state.count);
         }
         else {
             clearInterval(this);
@@ -192,4 +197,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
+    { changeCount }
 )(Timer)

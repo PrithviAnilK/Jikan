@@ -1,7 +1,8 @@
 import {
     CHANGE_POMODORO,
     CHANGE_SHORT_BREAK,
-    CHANGE_LONG_BREAK
+    CHANGE_LONG_BREAK,
+    CHANGE_COUNT
 } from '../actions/types'
 
 const beginingTime = {
@@ -18,7 +19,8 @@ const beginingTime = {
     longbreak: {
         minutes: 15,
         seconds: "00"
-    }
+    },
+    count: 0
 }
 
 export default (state = beginingTime, action) => {
@@ -32,6 +34,9 @@ export default (state = beginingTime, action) => {
                 
         case CHANGE_LONG_BREAK:
             return {...state, longbreak: action.payload}
+
+        case CHANGE_COUNT:
+            return {...state, count: action.payload + 1}
         
         default: 
             return state
