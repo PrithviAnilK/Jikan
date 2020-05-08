@@ -12,14 +12,14 @@ export const changePomodoro = (time) => {
     }
 }
 
-export const changeShortBreak = () => {
+export const changeShortBreak = (time) => {
     return {
         type: CHANGE_SHORT_BREAK,
         payload: time
     }
 }
 
-export const changeLongBreak = () => {
+export const changeLongBreak = (time) => {
     return {
         type: CHANGE_LONG_BREAK,
         payload: time
