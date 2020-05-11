@@ -6,7 +6,7 @@ import history from '../history'
 const Description = () => {
     return (
         <Modal 
-            onDismiss={() => history.push('/')}
+            onDismiss={() => history.push('/Jikan/')}
         />
     )
 }

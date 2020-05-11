@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, HashRouter } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom'
 import history from '../history'
 import Timer from './Timer'
 import Menu from './Menu'
@@ -11,14 +11,14 @@ import Settings from './Settings'
 const App = () => {
     return(
         <div>
-            <HashRouter history = {history}>
+            <Router history = {history}>
                 <div>
                     <Menu />
-                    <Route path="/" exact component={Timer} />
-                    <Route path="/description" exact component={Description} />
-                    <Route path="/settings" exact component={Settings} />
+                    <Route path="/Jikan/" exact component={Timer} />
+                    <Route path="/Jikan/description" exact component={Description} />
+                    <Route path="/Jikan/settings" exact component={Settings} />
                 </div>
-            </HashRouter>
+            </Router>
         </div>
     )
 }
