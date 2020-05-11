@@ -26,7 +26,6 @@ class Timer extends React.Component {
             seconds: this.props.beginningTime.pomodoro.seconds
         },
         timer: setInterval(this.tick, 1000),
-        count: this.props.beginningTime.count,
         type: 'Pomodoro'
     }
 
@@ -54,41 +53,35 @@ class Timer extends React.Component {
         }
     }
 
-    getTime = (time) => {
+    tick = () => {
+        const time = this.state.time;
         const minutes = time.minutes;
         const seconds = time.seconds;
-        if (minutes == 0 && seconds == 0) {
-            alert("Pomodoro Done!");
-            clearInterval(this.state.timer);
-            this.setState({
-                isOn: false,
-                count: (this.state.type === "Pomodoro" ?  this.state.count + 1 : this.state.count) 
-            });
-            // console.log(this.props.beginningTime.count);
-            // console.log(this.state.count);
-            return (this.getBeginTime(this.state.type));
-        }
-        if (seconds == 0) {
-            return ({
-                minutes: minutes - 1,
-                seconds: 59
-            })
-        }
-        else {
-            return ({
-                minutes: minutes,
-                seconds: seconds - 1
-            })
-        }
-    }
-
-
-    tick = () => {
         if (this.state.isOn) {
-            this.setState({
-                time: this.getTime(this.state.time)
-            })
-            if(this.state.count != this.props.beginningTime.count) this.props.changeCount(this.state.count);
+            if (minutes == 0 && seconds == 0) {
+                alert(`${this.state.type} Done!`);
+                this.resetButton(this.state.type);
+                if(this.state.type === "Pomodoro")
+                {
+                    this.props.changeCount(this.props.beginningTime.count);
+                }
+            }
+            else if (seconds == 0) {
+                this.setState({
+                    time: {
+                        minutes: minutes - 1,
+                        seconds: 59
+                    }
+                })
+            }
+            else {
+                this.setState({
+                    time: {
+                        minutes: minutes,
+                        seconds: seconds - 1
+                    }
+                })
+            }
         }
         else {
             clearInterval(this);
@@ -180,7 +173,7 @@ class Timer extends React.Component {
                         <span role="img" aria-label="Count">Count</span>
                     </h4>
                     <div className="ui header">
-                        Number of Pomodoro Sessions done today: {this.state.count}
+                        Number of Pomodoro Sessions done today: {this.props.beginningTime.count}
                     </div>
                 </div>
             </div>
