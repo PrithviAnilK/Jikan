@@ -14,9 +14,9 @@ const App = () => {
             <Router history = {history}>
                 <div>
                     <Menu />
-                    <Route path="/Jikan" exact component={Timer} />
-                    <Route path="/Jikan/description" exact component={Description} />
-                    <Route path="/Jikan/settings" exact component={Settings} />
+                    <Route path="/" exact component={Timer} />
+                    <Route path="/description" exact component={Description} />
+                    <Route path="/settings" exact component={Settings} />
                 </div>
             </Router>
         </div>

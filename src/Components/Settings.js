@@ -18,7 +18,7 @@ class Settings extends React.Component {
         if(this.pomodoro.current.value !== "") this.props.changePomodoro(this.pomodoro.current.value);
         if(this.shortbreak.current.value !== "") this.props.changeShortBreak(this.shortbreak.current.value);
         if(this.longbreak.current.value !== "") this.props.changeLongBreak(this.longbreak.current.value);
-        history.push('/Jikan');
+        history.goBack();
     }
 
 
