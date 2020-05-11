@@ -5,7 +5,7 @@ class Menu extends React.Component {
     render() {
         return (
             <div className = "ui menu">
-                    <div className = "header item"><Link to = "/Jikan/" style = {{color: "black"}}>Jikan</Link></div>
+                    <div className = "header item"><Link to = "/Jikan" style = {{color: "black"}}>Jikan</Link></div>
                 <div className = "right menu">
                     <Link className = "header item" to = "/Jikan/description">What is Jikan?</Link>
                     <Link className = "header item" to = "/Jikan/Settings"><i className="settings icon"></i></Link>
