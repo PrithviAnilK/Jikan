@@ -1,57 +1,104 @@
-import React from 'react';
+import React from 'react'
+import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux'
-import {changePomodoro, changeShortBreak, changeLongBreak} from '../actions'
-import history from '../history';
+import { changePomodoro, changeShortBreak, changeLongBreak } from '../actions'
+import history from '../history'
+import { Card } from 'antd';
 
-
-class Settings extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.pomodoro = React.createRef();
-        this.shortbreak = React.createRef();
-        this.longbreak = React.createRef();
+const Demo = (props) => {
+  const onFinish = ({pomodoro, short, long}) => {
+      var valid1 = /^\d+$/.test(pomodoro)
+      var valid2 = /^\d+$/.test(short)
+      var valid3 = /^\d+$/.test(long)
+      if(valid1 && valid2 && valid3)
+      {
+          props.changePomodoro(pomodoro);
+          props.changeShortBreak(short);
+          props.changeLongBreak(long);
+          console.log('Success:', [pomodoro, short, long]);
+          history.goBack();
     }
-
-    onSubmit = (e) => {
-        e.preventDefault();
-        if(this.pomodoro.current.value !== "") this.props.changePomodoro(this.pomodoro.current.value);
-        if(this.shortbreak.current.value !== "") this.props.changeShortBreak(this.shortbreak.current.value);
-        if(this.longbreak.current.value !== "") this.props.changeLongBreak(this.longbreak.current.value);
-        history.goBack();
+    else 
+    {
+        onFinishFailed("Enter a valid time (number)!")
     }
+  };
 
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
 
-    render() {
-        return (
-            <div className="body">
-                <div className="ui raised very padded text container segment">
-                    <h1>Settings</h1>
-                    <form className = "ui form" onSubmit = {this.onSubmit}> 
-                        <div style = {{margin: '20px'}}>
-                            <h3>Pomodoro Length</h3>
-                            <input className = "ui input fluid" ref = {this.pomodoro} placeholder = {this.props.beginningTime.pomodoro.minutes}></input>
-                            <h3>Short Break Length</h3>
-                            <input className = "ui input fluid" ref = {this.shortbreak} placeholder = {this.props.beginningTime.shortbreak.minutes}></input>
-                            <h3>Long Break Length</h3>
-                            <input className = "ui input fluid" ref = {this.longbreak} placeholder = {this.props.beginningTime.longbreak.minutes}></input>
-                        </div>
-                        <button className = "ui button primary">Submit</button>
-                    </form>
-                </div>
-            </div>
-        )
-    }
-}
+  return (
+    <Card style={{ width: "90%", margin: "0 auto", padding:"20px 0"}}>
+        <div style = {{textAlign: "center", backgroundColor: "white"}}>
+        <h1 style = {{fontSize: "40px"}}>
+            Settings
+        </h1>
+        <Form
+        name="basic"
+        initialValues={{
+            remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        span={12} offset={6}
+        >
+        <Form.Item
+            label="Pomodoro"
+            name="pomodoro"
+            rules={[
+            {
+                required: true,
+                message: 'Please input the Pomodoro time!',
+            },
+            ]}
+        >
+            
+            <Input />
+        </Form.Item>
 
-// export default Settings;
+        <Form.Item
+            label="Short Break"
+            name="short"
+            rules={[
+            {
+                required: true,
+                message: 'Please input the Short Break time!',
+            },
+            ]}
+        >
+            <Input />
+        </Form.Item>
+
+        <Form.Item
+            label="Long Break"
+            name="long"
+            rules={[
+                {
+                    required: true,
+                    message: 'Please input the Long Break time!',
+                },
+            ]}
+        >
+            <Input />
+        </Form.Item>
+
+        <Form.Item>
+            <Button type="primary" htmlType="submit">
+            Submit
+            </Button>
+        </Form.Item>
+        </Form>
+        </div>
+    </Card>
+  );
+};
 
 const mapStateToProps = (state) => {
-    // console.log(state)
     return {
         beginningTime: state.beginningTime
     }
 }
 
 
-export default connect(mapStateToProps, { changePomodoro, changeShortBreak, changeLongBreak })(Settings);
+export default connect(mapStateToProps, { changePomodoro, changeShortBreak, changeLongBreak })(Demo);

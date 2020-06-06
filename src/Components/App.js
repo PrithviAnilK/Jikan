@@ -1,25 +1,25 @@
-import React from 'react'
-import { HashRouter, Route } from 'react-router-dom'
-import history from '../history'
-import Timer from './Timer'
-import Menu from './Menu'
-import '../Styles/App.css'
-import Description from './Description'
-import Settings from './Settings'
+import React from 'react';
+import { HashRouter, Route } from 'react-router-dom';
+import history from '../history';
+import Timer from './Timer';
+import Nav from './Nav';
+import Settings from './Settings';
+import { Layout } from 'antd';
+import '../Styles/App.css';
 
+const { Content } = Layout;
 
 const App = () => {
     return(
-        <div>
+        <Layout>
             <HashRouter history = {history}>
-                <div>
-                    <Menu />
+                <Nav />
+                <Content id = "content">
                     <Route path="/" exact component={Timer} />
-                    <Route path="/description" exact component={Description} />
                     <Route path="/settings" exact component={Settings} />
-                </div>
+                </Content>
             </HashRouter>
-        </div>
+        </Layout>
     )
 }
 
