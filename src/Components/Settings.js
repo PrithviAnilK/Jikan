@@ -20,16 +20,16 @@ const Demo = (props) => {
     }
     else 
     {
-        onFinishFailed("Enter a valid time (number)!")
+        onFinishFailed();
     }
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+  const onFinishFailed = () => {
+    alert("Enter a valid time (number)!");
   };
 
   return (
-    <Card style={{ width: "90%", margin: "0 auto", padding:"20px 0"}}>
+    <Card style={{ width: "90%", margin: "0 auto", padding:"20px 0", height: "100vh"}}>
         <div style = {{textAlign: "center", backgroundColor: "white"}}>
         <h1 style = {{fontSize: "40px"}}>
             Settings
