@@ -10,22 +10,26 @@ const Demo = (props) => {
       var valid1 = /^\d+$/.test(pomodoro)
       var valid2 = /^\d+$/.test(short)
       var valid3 = /^\d+$/.test(long)
-      if(valid1 && valid2 && valid3)
+      if(pomodoro > 1440 || short > 1440 || long > 1440) 
+      {
+          onFinishFailed("I dont think it is physically possible to work for more than a day straight! Please choose a realistic goal.");
+      }
+      else if(valid1 && valid2 && valid3)
       {
           props.changePomodoro(pomodoro);
           props.changeShortBreak(short);
           props.changeLongBreak(long);
           console.log('Success:', [pomodoro, short, long]);
           history.goBack();
-    }
-    else 
-    {
-        onFinishFailed();
-    }
+      }
+      else 
+      {
+          onFinishFailed("Enter a valid time (number)!");
+      }
   };
 
-  const onFinishFailed = () => {
-    alert("Enter a valid time (number)!");
+  const onFinishFailed = (message) => {
+    alert(message);
   };
 
   return (
