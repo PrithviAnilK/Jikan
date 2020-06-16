@@ -176,10 +176,6 @@ class Timer extends React.Component {
                     <h1 style = {{ fontSize: "25px"}}>
                         Number of Pomodoro Sessions done today: {this.props.beginningTime.count}
                     </h1>
-                    <Divider />
-                    <h1 style = {{ fontSize: "40px"}}>
-                        Stats
-                    </h1>
                 </div>
                 <Divider />
                 <div>
